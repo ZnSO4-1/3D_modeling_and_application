@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "docs" / "assets" / "flowchart_4_1_technical_scheme.png"
+OUT = ROOT / "docs" / "assets" / "technical_scheme_flowchart.png"
 FONT_PATH = Path(r"C:\WINDOWS\Fonts\simsun.ttc")
 
 W, H = 2200, 1400

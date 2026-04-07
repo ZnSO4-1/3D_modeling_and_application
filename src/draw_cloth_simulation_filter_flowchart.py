@@ -4,8 +4,8 @@ import math
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "docs" / "assets" / "flowchart_cloth_filter.png"
-OUT2 = ROOT / "outputs" / "flowchart_cloth_filter.png"
+OUT = ROOT / "docs" / "assets" / "cloth_simulation_filter_flowchart.png"
+OUT2 = ROOT / "outputs" / "cloth_simulation_filter_flowchart.png"
 FONT_PATH = Path(r"C:\WINDOWS\Fonts\simsun.ttc")
 
 W, H = 1800, 1700

@@ -1,62 +1,63 @@
-# 3D Modeling and Application: LiDAR Terrain Modeling
+# LiDAR Terrain Modeling
 
-This repository contains a reproducible course assignment workflow for terrain-level 3D modeling from a LAS point cloud.
+This repository contains a small, reproducible workflow for terrain-level 3D modeling from airborne/terrestrial LiDAR LAS data. It was built for a 3D modeling and application course assignment, with emphasis on transparent processing steps and report-ready outputs.
 
-The original LAS files and generated large data products are not included in the open-source package because they are large and may be course-provided data. Place your LAS file in `data/` before running the workflow.
+## Features
 
-## What is included
+- Direct reading of LAS 1.2 point format 3 data without requiring `laspy`.
+- Elevation-quantile denoising for removing obvious high/low outliers.
+- Progressive TIN-like ground filtering.
+- Cloth-simulation-like ground filtering.
+- Ground-point LAS export.
+- DEM generation as GeoTIFF plus world file.
+- Preview images and algorithm flowcharts for reports.
 
-- `src/terrain_lidar_assignment.py`: LAS reader, denoising, progressive TIN-like ground filtering, cloth-simulation-like ground filtering, ground LAS export, DEM generation, and preview images.
-- `src/make_report_pptx.py`: a minimal PPTX report generator using generated preview images.
-- `src/draw_*.py`: scripts for drawing report flowcharts.
-- `docs/report_sections.md`: report text that can be copied into the internship report.
-- `docs/assets/`: algorithm and technical-scheme flowcharts.
+## Repository Structure
 
-## What is not included
+```text
+data/        input LAS point cloud
+docs/        report text and flowchart assets
+outputs/     generated LAS, DEM, preview image, and report-material outputs
+src/         processing and drawing scripts
+```
 
-- Raw LAS point cloud data, such as `20251126150027848.las`.
-- Generated large files, such as `ground_tin.las`, `ground_csf.las`, and DEM rasters.
-- Course PPTX templates or assignment files.
+Large LAS files are tracked with Git LFS.
 
 ## Quick Start
 
-1. Install dependencies:
+Install dependencies:
 
 ```powershell
 python -m pip install -r requirements.txt
 ```
 
-2. Put the input point cloud here:
-
-```text
-data/20251126150027848.las
-```
-
-3. Run the terrain modeling workflow:
+Run the main workflow:
 
 ```powershell
-python .\src\terrain_lidar_assignment.py
+python .\src\terrain_modeling_workflow.py
 ```
 
-4. Optional: regenerate the flowcharts:
+Regenerate flowcharts:
 
 ```powershell
-python .\src\draw_4_1_flowchart.py
-python .\src\draw_progressive_tin_flowchart.py
-python .\src\draw_cloth_filter_flowchart.py
+python .\src\draw_technical_scheme_flowchart.py
+python .\src\draw_progressive_tin_filter_flowchart.py
+python .\src\draw_cloth_simulation_filter_flowchart.py
 ```
 
-5. Optional: generate the brief PPTX report after the workflow outputs are produced:
+Optionally generate a local PPTX summary after the workflow has produced preview images:
 
 ```powershell
-python .\src\make_report_pptx.py
+python .\src\build_report_presentation.py
 ```
 
-## Main Workflow
+Generated PPTX files are ignored by Git and are not part of the published outputs.
+
+## Workflow
 
 ```text
 Input LAS point cloud
--> elevation quantile denoising
+-> elevation-quantile denoising
 -> progressive TIN-like ground filtering
 -> cloth-simulation-like ground filtering
 -> ground LAS export
@@ -64,8 +65,8 @@ Input LAS point cloud
 -> preview images and report materials
 ```
 
-## Notes
+## Data and Outputs
 
-The implementation avoids requiring `laspy`, `rasterio`, or `python-pptx`; it parses LAS 1.2 point format 3 directly and writes minimal GeoTIFF/PPTX outputs with standard Python libraries plus `numpy`, `scipy`, `Pillow`, and `matplotlib`.
+The repository includes the input LAS file used in the experiment and the generated non-PPTX results under `outputs/`, including ground-point LAS files, DEM files, preview images, and report materials.
 
-The filtering implementation is an educational approximation of progressive TIN filtering and cloth simulation filtering. It is intended for course reporting and reproducible learning, not as a replacement for production-grade LiDAR processing software.
+The filtering code is an educational implementation for course reporting and reproducible learning. It should not be treated as a replacement for production LiDAR processing software.

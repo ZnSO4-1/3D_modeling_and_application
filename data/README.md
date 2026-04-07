@@ -1,9 +1,9 @@
-# Data Directory
+# Data
 
-Place the input LAS file here before running the workflow:
+This directory contains the input LAS point cloud used by the terrain modeling workflow:
 
 ```text
 data/20251126150027848.las
 ```
 
-The raw LAS data is not included in the open-source package because it is large and may be course-provided data.
+The LAS file is tracked with Git LFS because it is larger than GitHub's regular file-size limit.
