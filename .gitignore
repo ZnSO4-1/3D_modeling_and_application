@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+
+# Raw and derived point-cloud/raster data are intentionally excluded.
+data/*.las
+data/*.laz
+outputs/*
+!outputs/.gitkeep
+*.tif
+*.tfw
+*.las
+*.laz
+
+# Office exports generated locally.
+*.pptx
